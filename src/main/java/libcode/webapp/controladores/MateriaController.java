@@ -18,7 +18,7 @@ import libcode.webapp.negocio.DataService; // Listo
  */
 @Named
 @RequestScoped
-public class IndexControllerMateria {
+public class MateriaController {
     
     
     // Materia
@@ -49,7 +49,7 @@ public class IndexControllerMateria {
         this.materia.setId(materia.getId());
         this.materia.setNombre(materia.getNombre());
         this.materia.setDescripcion(materia.getDescripcion());
-        this.materia.setCodigo_materia(materia.getCodigo_materia());
+        this.materia.setCodigoMateria(materia.getCodigoMateria());
     }
 
     public void eliminarMateria(Materia materia) {

@@ -35,7 +35,7 @@ public class Materia implements Serializable {
     private String descripcion;
     
     @Column(name = "codigo_materia")
-    private String codigo_materia;
+    private String codigoMateria;
 
     public Integer getId() {
         return id;
@@ -61,12 +61,12 @@ public class Materia implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getCodigo_materia() {
-        return codigo_materia;
+    public String getCodigoMateria() {
+        return codigoMateria;
     }
 
-    public void setCodigo_materia(String codigo_materia) {
-        this.codigo_materia = codigo_materia;
+    public void setCodigoMateria(String codigo_materia) {
+        this.codigoMateria = codigo_materia;
     }
 
     @Override
@@ -93,7 +93,7 @@ public class Materia implements Serializable {
 
     @Override
     public String toString() {
-        return "Materia{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", codigo_materia=" + codigo_materia + '}';
+        return "Materia{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", codigo_materia=" + codigoMateria + '}';
     }
 
     public Materia(Integer id) {
@@ -104,7 +104,7 @@ public class Materia implements Serializable {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.codigo_materia = codigo_materia;
+        this.codigoMateria = codigo_materia;
     }
 
     public Materia() {

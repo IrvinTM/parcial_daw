@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <h:body>
+        <p:card style="margin: 5% 5% 5% 5%">
+            <h1>Listado de Inscripciones</h1>
+            <h:form id="tablaIncripciones">
+                <p:dataTable rows="5" paginator="true" paginatorPosition="bottom" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}{LastPageLink}{RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                             rowsPerPageTemplate="5,10,{ShowAll|'All'}"
+                             value="#{inscripcionController.inscripcionesList}" var="inscripciones">
+                    <p:column>
+                        <f:facet name="header">ID</f:facet>
+                        <span> #{inscripciones.id}</span>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Alumno</f:facet>
+                        <span> #{inscripciones.alumno.nombre}</span>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Materia</f:facet>
+                        <span> #{inscripciones.materia.nombre}</span>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Ciclo</f:facet>
+                        <span> #{inscripciones.ciclo}</span>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Annio</f:facet>
+                        <span> #{inscripciones.annio}</span>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Fecha</f:facet>
+                        <span> #{inscripciones.fechaInscripcion}</span>
+                    </p:column>
+                </p:dataTable>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" />
+                </p:confirmDialog>
+            </h:form>
+        </p:card>
+    </h:body>
+</html>

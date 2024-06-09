@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="jakarta.faces.facelets">
     <h:head>
         <title>Crud</title>
     </h:head>
@@ -69,6 +70,11 @@
                 </p:confirmDialog>
             </h:form>
         </p:card>
-
+        <p:outputPanel id="contenidoSecundario">
+    <ui:include src="inscripciones.xhtml" />
+</p:outputPanel>
+        <p:outputPanel id="materias">
+    <ui:include src="materias.xhtml" />
+</p:outputPanel>
     </h:body>
 </html>

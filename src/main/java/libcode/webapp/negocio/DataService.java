@@ -11,6 +11,7 @@ import jakarta.persistence.Query; // Listo
 import jakarta.transaction.Transactional; // Listo
 import java.util.List; // Listo
 import libcode.webapp.entidades.Alumno; // Listo
+import libcode.webapp.entidades.Inscripciones;
 import libcode.webapp.entidades.Materia;
 
 /**
@@ -30,6 +31,22 @@ public class DataService {
         List<Alumno> alumnos = query.getResultList();
 
         return alumnos;
+
+    }
+    
+    public List<Inscripciones> getInscripciones(){
+        Query query = entityManager.createQuery("SELECT i FROM Inscripciones i ORDER BY i.id ASC");
+        List<Inscripciones> inscripciones = query.getResultList();
+        return inscripciones;
+    }
+    
+    public List<Materia> getMaterias() {
+
+        Query query = entityManager.createQuery("SELECT m FROM Materia m ORDER BY m.id ASC");
+
+        List<Materia> materias = query.getResultList();
+
+        return materias;
 
     }
 
@@ -52,15 +69,6 @@ public class DataService {
     
     
     // Materia
-     public List<Materia> getMaterias() {
-
-        Query query = entityManager.createQuery("SELECT m FROM Materia m ORDER BY m.id ASC");
-
-        List<Materia> materias = query.getResultList();
-
-        return materias;
-
-    }
 
     @Transactional
     public void saveMateria(Materia materia) {
@@ -76,6 +84,16 @@ public class DataService {
     public void deleteMateria(Materia materia) {
         Materia materiaEliminar = entityManager.find(Materia.class,materia.getId());
         entityManager.remove(materiaEliminar);
+    }
+    @Transactional
+    public void saveInscripcion(Inscripciones inscripcion){
+        entityManager.persist(inscripcion);
+    }
+    
+    @Transactional
+    public void deleteInscripcion(Inscripciones inscripcion){
+        Inscripciones inscripcionEliminar = entityManager.find(Inscripciones.class, inscripcion.getId());
+        entityManager.remove(inscripcionEliminar);
     }
 
 }
