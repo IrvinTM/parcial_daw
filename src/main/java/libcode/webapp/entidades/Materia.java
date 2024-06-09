@@ -13,33 +13,36 @@ import jakarta.persistence.SequenceGenerator; // Listo
 import jakarta.persistence.Table; // Listo
 import java.io.Serializable; // Listo
 import java.util.Objects; // Listo
-
 /**
  *
  * @author Usuario
  */
-@Entity
-@Table(name = "alumno")
-public class Alumno implements Serializable {
 
+@Entity
+@Table(name = "materia")
+public class Materia implements Serializable {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "alumno_id_seq")
-    @SequenceGenerator(name = "alumno_id_seq", sequenceName = "alumno_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "materia_id_seq")
+    @SequenceGenerator(name = "materia_id_seq", sequenceName = "materia_id_seq", allocationSize = 1)
     @Column(name = "id")
     private Integer id;
 
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "carnet")
-    private String carnet;
+    @Column(name = "descripcion")
+    private String descripcion;
+    
+    @Column(name = "codigo_materia")
+    private String codigo_materia;
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer Id) {
-        this.id = Id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -50,18 +53,26 @@ public class Alumno implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getCarnet() {
-        return carnet;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setCarnet(String carnet) {
-        this.carnet = carnet;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getCodigo_materia() {
+        return codigo_materia;
+    }
+
+    public void setCodigo_materia(String codigo_materia) {
+        this.codigo_materia = codigo_materia;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -76,31 +87,33 @@ public class Alumno implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Alumno other = (Alumno) obj;
+        final Materia other = (Materia) obj;
         return Objects.equals(this.id, other.id);
     }
 
     @Override
     public String toString() {
-        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", carnet=" + carnet + '}';
+        return "Materia{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", codigo_materia=" + codigo_materia + '}';
     }
 
-    public Alumno(Integer Id) {
-        this.id = Id;
+    public Materia(Integer id) {
+        this.id = id;
     }
 
-    public Alumno(Integer Id, String nombre, String carnet) {
-        this.id = Id;
+    public Materia(Integer id, String nombre, String descripcion, String codigo_materia) {
+        this.id = id;
         this.nombre = nombre;
-        this.carnet = carnet;
+        this.descripcion = descripcion;
+        this.codigo_materia = codigo_materia;
     }
 
-    public Alumno() {
+    public Materia() {
+        
     }
-
-    public Alumno(Integer Id, String nombre) {
-        this.id = Id;
+    
+    public Materia(Integer id, String nombre) {
+        this.id = id;
         this.nombre = nombre;
+        
     }
-
 }

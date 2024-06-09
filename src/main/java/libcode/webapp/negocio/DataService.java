@@ -11,6 +11,7 @@ import jakarta.persistence.Query; // Listo
 import jakarta.transaction.Transactional; // Listo
 import java.util.List; // Listo
 import libcode.webapp.entidades.Alumno; // Listo
+import libcode.webapp.entidades.Materia;
 
 /**
  *
@@ -46,6 +47,35 @@ public class DataService {
     public void deleteAlumno(Alumno alumno) {
         Alumno alumnoEliminar = entityManager.find(Alumno.class,alumno.getId());
         entityManager.remove(alumnoEliminar);
+    }
+    
+    
+    
+    // Materia
+     public List<Materia> getMaterias() {
+
+        Query query = entityManager.createQuery("SELECT m FROM Materia m ORDER BY m.id ASC");
+
+        List<Materia> materias = query.getResultList();
+
+        return materias;
+
+    }
+
+    @Transactional
+    public void saveMateria(Materia materia) {
+        entityManager.persist(materia);
+    }
+
+    @Transactional
+    public void editMateria(Materia materia) {
+        entityManager.merge(materia);
+    }
+    
+    @Transactional
+    public void deleteMateria(Materia materia) {
+        Materia materiaEliminar = entityManager.find(Materia.class,materia.getId());
+        entityManager.remove(materiaEliminar);
     }
 
 }
