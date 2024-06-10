@@ -15,7 +15,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "inscripciones")
-public class Inscripciones implements Serializable {
+public class Inscripcion implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inscripciones_id_seq")
@@ -23,11 +23,11 @@ public class Inscripciones implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Alumno.class)
     @JoinColumn(name = "id_alumno", referencedColumnName = "id")
     private Alumno alumno;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Materia.class)
     @JoinColumn(name = "id_materia", referencedColumnName = "id")
     private Materia materia;
 
@@ -35,7 +35,7 @@ public class Inscripciones implements Serializable {
     private String ciclo;
 
     @Column(name = "annio")
-    private Integer annio;
+    private int annio;
 
     @Column(name = "fecha_inscripcion")
     private LocalDate fechaInscripcion;
@@ -73,11 +73,11 @@ public class Inscripciones implements Serializable {
         this.ciclo = ciclo;
     }
 
-    public Integer getAnnio() {
+    public int getAnnio() {
         return annio;
     }
 
-    public void setAnnio(Integer annio) {
+    public void setAnnio(int annio) {
         this.annio = annio;
     }
 
@@ -108,7 +108,7 @@ public class Inscripciones implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Inscripciones other = (Inscripciones) obj;
+        final Inscripcion other = (Inscripcion) obj;
         return Objects.equals(this.id, other.id);
     }
 
@@ -118,10 +118,10 @@ public class Inscripciones implements Serializable {
     }
 
     // Constructors
-    public Inscripciones() {
+    public Inscripcion() {
     }
 
-    public Inscripciones(Integer id, Alumno alumno, Materia materia, String ciclo, Integer annio, LocalDate fechaInscripcion) {
+    public Inscripcion(Integer id, Alumno alumno, Materia materia, String ciclo, int annio, LocalDate fechaInscripcion) {
         this.id = id;
         this.alumno = alumno;
         this.materia = materia;

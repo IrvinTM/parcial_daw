@@ -1,9 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package libcode.webapp.negocio;
 
+package libcode.webapp.negocio;
 import jakarta.ejb.Stateless; // Listo
 import jakarta.persistence.EntityManager; // Listo
 import jakarta.persistence.PersistenceContext; // Listo
@@ -11,7 +7,7 @@ import jakarta.persistence.Query; // Listo
 import jakarta.transaction.Transactional; // Listo
 import java.util.List; // Listo
 import libcode.webapp.entidades.Alumno; // Listo
-import libcode.webapp.entidades.Inscripciones;
+import libcode.webapp.entidades.Inscripcion;
 import libcode.webapp.entidades.Materia;
 
 /**
@@ -34,9 +30,9 @@ public class DataService {
 
     }
     
-    public List<Inscripciones> getInscripciones(){
-        Query query = entityManager.createQuery("SELECT i FROM Inscripciones i ORDER BY i.id ASC");
-        List<Inscripciones> inscripciones = query.getResultList();
+    public List<Inscripcion> getInscripciones(){
+        Query query = entityManager.createQuery("SELECT i FROM Inscripcion i ORDER BY i.id ASC");
+        List<Inscripcion> inscripciones = query.getResultList();
         return inscripciones;
     }
     
@@ -86,13 +82,13 @@ public class DataService {
         entityManager.remove(materiaEliminar);
     }
     @Transactional
-    public void saveInscripcion(Inscripciones inscripcion){
+    public void saveInscripcion(Inscripcion inscripcion){
         entityManager.persist(inscripcion);
     }
     
     @Transactional
-    public void deleteInscripcion(Inscripciones inscripcion){
-        Inscripciones inscripcionEliminar = entityManager.find(Inscripciones.class, inscripcion.getId());
+    public void deleteInscripcion(Inscripcion inscripcion){
+        Inscripcion inscripcionEliminar = entityManager.find(Inscripcion.class,inscripcion.getId());
         entityManager.remove(inscripcionEliminar);
     }
 
