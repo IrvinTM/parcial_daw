@@ -16,23 +16,27 @@ import libcode.webapp.negocio.DataService;
 public class InscripcionController {
 
     private List<Inscripcion> inscripcionesList = new ArrayList<>();
+    private Inscripcion inscripcion = new Inscripcion();
     private List<Alumno> alumnosList = new ArrayList<>();
     private List<Materia> materiasList = new ArrayList<>();
-    private Inscripcion inscripcion = new Inscripcion();
-    private String ciclo;
-    private int annio;
 
     @EJB
-    private DataService servicio;
+    DataService servicio;
 
     @PostConstruct
-    public void cargarDatos() {
+    public void cargarInscripciones() {
         inscripcionesList = servicio.getInscripciones();
         alumnosList = servicio.getAlumnos();
         materiasList = servicio.getMaterias();
     }
 
-    // Getters and setters
+    public void guardarInscripcion() {
+        servicio.saveInscripcion(inscripcion);
+        inscripcion = new Inscripcion();
+        cargarInscripciones();
+    }
+
+    // Getters and Setters
     public List<Inscripcion> getInscripcionesList() {
         return inscripcionesList;
     }
@@ -40,6 +44,7 @@ public class InscripcionController {
     public void setInscripcionesList(List<Inscripcion> inscripcionesList) {
         this.inscripcionesList = inscripcionesList;
     }
+    
 
     public List<Alumno> getAlumnosList() {
         return alumnosList;
@@ -56,7 +61,8 @@ public class InscripcionController {
     public void setMateriasList(List<Materia> materiasList) {
         this.materiasList = materiasList;
     }
-
+    
+    // Getter y Setter
     public Inscripcion getInscripcion() {
         return inscripcion;
     }
@@ -64,20 +70,5 @@ public class InscripcionController {
     public void setInscripcion(Inscripcion inscripcion) {
         this.inscripcion = inscripcion;
     }
-
-    public String getCiclo() {
-        return ciclo;
-    }
-
-    public void setCiclo(String ciclo) {
-        this.ciclo = ciclo;
-    }
-
-    public int getAnnio() {
-        return annio;
-    }
-
-    public void setAnnio(int annio) {
-        this.annio = annio;
-    }
+    
 }

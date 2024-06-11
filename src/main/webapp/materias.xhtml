@@ -9,24 +9,29 @@
     </h:head>
 
     <h:body>
-
+         <h1 style="text-align: center;">Materias Web App</h1>
+        <p:menubar style="text-align: center;">
+            <p:menuitem value="Alumnos" icon="pi pi-fw pi-user" url="index.xhtml"/>
+            <p:menuitem value="Materias" icon="pi pi-fw pi-book" url="materias.xhtml"/>
+            <p:menuitem value="Inscripciones" icon="pi pi-fw pi-pencil" url="inscripciones.xhtml"/>
+        </p:menubar>
         <p:card style="margin: 5% 5% 5% 5%">
             <f:facet name="title">Formulario de Materias</f:facet>
             <f:view>
                 <h:form id="materiaForm">
-                    <h:inputHidden id="id" value="#{materiaController.materia.id}"/>
+                    <h:inputHidden id="id" value="#{indexControllerMateria.materia.id}"/>
                     <p:panelGrid columns="1" layout="grid">
                         <p:outputLabel value="Nombre:"/>
-                        <p:inputText id="nombre" value="#{materiaController.materia.nombre}"/>
+                        <p:inputText id="nombre" value="#{indexControllerMateria.materia.nombre}"/>
 
                         <p:outputLabel value="Descripción:"/>
-                        <p:inputTextarea id="descripcion" value="#{materiaController.materia.descripcion}" rows="3"/>
+                        <p:inputTextarea id="descripcion" value="#{indexControllerMateria.materia.descripcion}"/>
 
                         <p:outputLabel value="Código Materia:"/>
-                        <p:inputText id="codigoMateria" value="#{materiaController.materia.codigoMateria}"/>
+                        <p:inputText id="codigo_materia" value="#{indexControllerMateria.materia.codigo_materia}"/>
                     </p:panelGrid>
                     <p:panelGrid columns="4" layout="grid">
-                        <p:commandButton value="Guardar" actionListener="#{materiaController.guardarMateria}" update="tablaMaterias materiaForm" />
+                        <p:commandButton value="Guardar" actionListener="#{indexControllerMateria.guardarMateria}" update="tablaMaterias materiaForm" />
                     </p:panelGrid>
                 </h:form>
             </f:view>  
@@ -39,7 +44,7 @@
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}{LastPageLink}{RowsPerPageDropdown}"
                              currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                              rowsPerPageTemplate="5,10,{ShowAll|'All'}"
-                             value="#{materiaController.materiasList}" var="materia">
+                             value="#{indexControllerMateria.materiasList}" var="materia">
                     <p:column>
                         <f:facet name="header">ID</f:facet>
                         <span> #{materia.id}</span>
@@ -54,16 +59,16 @@
                     </p:column>
                     <p:column>
                         <f:facet name="header">Código Materia</f:facet>
-                        <span> #{materia.codigoMateria}</span>
+                        <span> #{materia.codigo_materia}</span>
                     </p:column>
                     <p:column>
                         <f:facet name="header">Opciones</f:facet>
                         <p:commandButton value="Editar" icon="pi pi-pencil" update="materiaForm"
-                                         actionListener="#{materiaController.llenarFormEditarMateria(materia)}" />
+                                         actionListener="#{indexControllerMateria.llenarFormEditarMateria(materia)}" />
 
                         <p:spacer width="10" />
                         <p:commandButton value="Eliminar" icon="pi pi-trash" update="tablaMaterias" style="background-color: red" 
-                                         action="#{materiaController.eliminarMateria(materia)}" >
+                                         action="#{indexControllerMateria.eliminarMateria(materia)}" >
                             <p:confirm header="Confirmar" message="¿Desea eliminar la materia: #{materia.nombre}?" icon="pi pi-info-circle"/>
 
                         </p:commandButton>

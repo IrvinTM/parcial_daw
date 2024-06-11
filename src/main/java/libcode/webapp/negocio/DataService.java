@@ -1,49 +1,26 @@
-
 package libcode.webapp.negocio;
-import jakarta.ejb.Stateless; // Listo
-import jakarta.persistence.EntityManager; // Listo
-import jakarta.persistence.PersistenceContext; // Listo
-import jakarta.persistence.Query; // Listo
-import jakarta.transaction.Transactional; // Listo
-import java.util.List; // Listo
-import libcode.webapp.entidades.Alumno; // Listo
+
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
+import java.util.List;
+import libcode.webapp.entidades.Alumno;
 import libcode.webapp.entidades.Inscripcion;
 import libcode.webapp.entidades.Materia;
+import java.time.LocalDate;
 
-/**
- *
- * @author Usuario
- */
 @Stateless
 public class DataService {
 
-    @PersistenceContext( unitName = "pu" )
+    @PersistenceContext(unitName = "pu")
     EntityManager entityManager;
 
     public List<Alumno> getAlumnos() {
-
         Query query = entityManager.createQuery("SELECT e FROM Alumno e ORDER BY e.id ASC");
-
         List<Alumno> alumnos = query.getResultList();
-
         return alumnos;
-
-    }
-    
-    public List<Inscripcion> getInscripciones(){
-        Query query = entityManager.createQuery("SELECT i FROM Inscripcion i ORDER BY i.id ASC");
-        List<Inscripcion> inscripciones = query.getResultList();
-        return inscripciones;
-    }
-    
-    public List<Materia> getMaterias() {
-
-        Query query = entityManager.createQuery("SELECT m FROM Materia m ORDER BY m.id ASC");
-
-        List<Materia> materias = query.getResultList();
-
-        return materias;
-
     }
 
     @Transactional
@@ -55,16 +32,19 @@ public class DataService {
     public void editAlumno(Alumno alumno) {
         entityManager.merge(alumno);
     }
-    
+
     @Transactional
     public void deleteAlumno(Alumno alumno) {
-        Alumno alumnoEliminar = entityManager.find(Alumno.class,alumno.getId());
+        Alumno alumnoEliminar = entityManager.find(Alumno.class, alumno.getId());
         entityManager.remove(alumnoEliminar);
     }
-    
-    
-    
+
     // Materia
+    public List<Materia> getMaterias() {
+        Query query = entityManager.createQuery("SELECT m FROM Materia m ORDER BY m.id ASC");
+        List<Materia> materias = query.getResultList();
+        return materias;
+    }
 
     @Transactional
     public void saveMateria(Materia materia) {
@@ -75,21 +55,24 @@ public class DataService {
     public void editMateria(Materia materia) {
         entityManager.merge(materia);
     }
-    
+
     @Transactional
     public void deleteMateria(Materia materia) {
-        Materia materiaEliminar = entityManager.find(Materia.class,materia.getId());
+        Materia materiaEliminar = entityManager.find(Materia.class, materia.getId());
         entityManager.remove(materiaEliminar);
     }
-    @Transactional
-    public void saveInscripcion(Inscripcion inscripcion){
-        entityManager.persist(inscripcion);
+
+    // Inscripción
+    public List<Inscripcion> getInscripciones() {
+        Query query = entityManager.createQuery("SELECT i FROM Inscripcion i ORDER BY i.id ASC");
+        List<Inscripcion> inscripciones = query.getResultList();
+        return inscripciones;
     }
-    
+
     @Transactional
-    public void deleteInscripcion(Inscripcion inscripcion){
-        Inscripcion inscripcionEliminar = entityManager.find(Inscripcion.class,inscripcion.getId());
-        entityManager.remove(inscripcionEliminar);
+    public void saveInscripcion(Inscripcion inscripcion) {
+        inscripcion.setFechaInscripcion(LocalDate.now());
+        entityManager.persist(inscripcion);
     }
 
 }

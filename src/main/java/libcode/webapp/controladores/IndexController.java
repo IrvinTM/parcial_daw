@@ -4,19 +4,15 @@
  */
 package libcode.webapp.controladores;
 
-import jakarta.annotation.PostConstruct; // Listo
-import jakarta.ejb.EJB; // Listo
-import jakarta.enterprise.context.RequestScoped; // Listo
-import jakarta.inject.Named; // Listo
-import java.util.ArrayList; // Listo
-import java.util.List; // Listo
-import libcode.webapp.entidades.Alumno; // Listo
-import libcode.webapp.negocio.DataService; // Listo
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
+import libcode.webapp.entidades.Alumno;
+import libcode.webapp.negocio.DataService;
 
-/**
- *
- * @author Usuario
- */
 @Named
 @RequestScoped
 public class IndexController {
@@ -48,8 +44,8 @@ public class IndexController {
         this.alumno.setNombre(alumno.getNombre());
         this.alumno.setCarnet(alumno.getCarnet());
     }
-    
-    public void eliminarAlumno(Alumno alumno){
+
+    public void eliminarAlumno(Alumno alumno) {
         servicio.deleteAlumno(alumno);
         cargarAlumnos();
     }

@@ -3,13 +3,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="jakarta.faces.facelets">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Crud</title>
+        <title>Alumnos</title>
     </h:head>
 
     <h:body>
+        <h1 style="text-align: center;">Alumnos Web App</h1>
+        <p:menubar style="text-align: center;">
+            <p:menuitem value="Alumnos" icon="pi pi-fw pi-user" url="index.xhtml"/>
+            <p:menuitem value="Materias" icon="pi pi-fw pi-book" url="materias.xhtml"/>
+            <p:menuitem value="Inscripciones" icon="pi pi-fw pi-pencil" url="inscripciones.xhtml"/>
+        </p:menubar>
 
         <p:card style="margin: 5% 5% 5% 5%">
             <f:facet name="title">Formulario de Alumnos</f:facet>
@@ -70,11 +75,6 @@
                 </p:confirmDialog>
             </h:form>
         </p:card>
-        <p:outputPanel id="contenidoSecundario">
-    <ui:include src="inscripciones.xhtml" />
-</p:outputPanel>
-        <p:outputPanel id="materias">
-    <ui:include src="materias.xhtml" />
-</p:outputPanel>
+
     </h:body>
 </html>

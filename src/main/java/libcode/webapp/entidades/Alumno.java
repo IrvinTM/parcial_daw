@@ -4,20 +4,16 @@
  */
 package libcode.webapp.entidades;
 
-import jakarta.persistence.Column; // Listo
-import jakarta.persistence.Entity; // Listo
-import jakarta.persistence.GeneratedValue; // Listo
-import jakarta.persistence.GenerationType; // Listo
-import jakarta.persistence.Id; // Listo
-import jakarta.persistence.SequenceGenerator; // Listo
-import jakarta.persistence.Table; // Listo
-import java.io.Serializable; // Listo
-import java.util.Objects; // Listo
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import java.io.Serializable;
+import java.util.Objects;
 
-/**
- *
- * @author Usuario
- */
 @Entity
 @Table(name = "alumno")
 public class Alumno implements Serializable {

@@ -4,24 +4,20 @@
  */
 package libcode.webapp.entidades;
 
-import jakarta.persistence.Column; // Listo
-import jakarta.persistence.Entity; // Listo
-import jakarta.persistence.GeneratedValue; // Listo
-import jakarta.persistence.GenerationType; // Listo
-import jakarta.persistence.Id; // Listo
-import jakarta.persistence.SequenceGenerator; // Listo
-import jakarta.persistence.Table; // Listo
-import java.io.Serializable; // Listo
-import java.util.Objects; // Listo
-/**
- *
- * @author Usuario
- */
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "materia")
 public class Materia implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "materia_id_seq")
     @SequenceGenerator(name = "materia_id_seq", sequenceName = "materia_id_seq", allocationSize = 1)
@@ -33,9 +29,9 @@ public class Materia implements Serializable {
 
     @Column(name = "descripcion")
     private String descripcion;
-    
+
     @Column(name = "codigo_materia")
-    private String codigoMateria;
+    private String codigo_materia;
 
     public Integer getId() {
         return id;
@@ -61,12 +57,12 @@ public class Materia implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getCodigoMateria() {
-        return codigoMateria;
+    public String getCodigo_materia() {
+        return codigo_materia;
     }
 
-    public void setCodigoMateria(String codigo_materia) {
-        this.codigoMateria = codigo_materia;
+    public void setCodigo_materia(String codigo_materia) {
+        this.codigo_materia = codigo_materia;
     }
 
     @Override
@@ -93,7 +89,7 @@ public class Materia implements Serializable {
 
     @Override
     public String toString() {
-        return "Materia{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", codigo_materia=" + codigoMateria + '}';
+        return "Materia{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", codigo_materia=" + codigo_materia + '}';
     }
 
     public Materia(Integer id) {
@@ -104,16 +100,16 @@ public class Materia implements Serializable {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.codigoMateria = codigo_materia;
+        this.codigo_materia = codigo_materia;
     }
 
     public Materia() {
-        
+
     }
-    
+
     public Materia(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        
+
     }
 }
